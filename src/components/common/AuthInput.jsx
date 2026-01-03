@@ -7,13 +7,13 @@ export default function AuthInput({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-sm text-gray-600">{label}</label>
+      <label className="text-lg text-gray-800 text-[24px]">{label}</label>
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-black"
+        className="w-full border-2 border-gray-400 rounded-full px-4 text-[20px] py-3 focus:outline-none focus:border-black"
       />
     </div>
   );
