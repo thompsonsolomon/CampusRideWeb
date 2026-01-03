@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import { onboardingData } from "../../data";
+import { useNavigate } from "react-router-dom";
 
 export default function Onboarding() {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate()
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -36,13 +38,13 @@ export default function Onboarding() {
       setCurrent((prev) => prev + 1);
     } else {
       console.log("Go to login");
-      // navigate("/login");
+      navigate("auth/login");
     }
   };
 
   const handleSkip = () => {
     console.log("Skip onboarding");
-    // navigate("/login");
+    navigate("auth/login");
   };
 
   return (
@@ -77,15 +79,15 @@ export default function Onboarding() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full max-w-xs h-72 object-contain mb-10 select-none"
+                className="w-full h-90 object-contain mb-10 select-none"
                 draggable={false}
               />
 
               {/* Text */}
-              <h2 className="text-2xl font-bold text-center mb-3">
-                {item.title}
+              <h2 className="text-[40px]  text-black font-bold text-center mb-[20px]">
+                {item.title} <span className="text-yellow-500 ">{item.add}</span>
               </h2>
-              <p className="text-gray-500 text-center">
+              <p className="text-gray-500 text-[20px] text-center">
                 {item.description}
               </p>
             </div>
@@ -93,15 +95,37 @@ export default function Onboarding() {
         </div>
       </div>
 
+      {
+        /* Dots Indicator */
+      }
+      <div className="flex justify-center items-center gap-3 mb-4">
+        {onboardingData.map((_, index) => {
+          const isActive = index === current;
+
+          return (
+            <div
+              key={index}
+              className={`
+          h-2 rounded-full
+          transition-all duration-300 ease-in-out
+          ${isActive ? "w-9 bg-yellow-500 scale-110" : "w-2 bg-gray-300 scale-100"}
+        `}
+            />
+          );
+        })}
+      </div>
+
+
+
       {/* Continue Button */}
-      <div className="p-6">
+      <div className="p-6 flex justify-center">
         <button
           onClick={handleNext}
-          className="w-full bg-black text-white py-4 rounded-xl text-lg font-semibold"
+          className="w-[90%] bg-yellow-500 text-white py-4 rounded-full text-lg font-semibold"
         >
           {current === onboardingData.length - 1
             ? "Get Started"
-            : "Continue"}
+            : "Next"}
         </button>
       </div>
     </div>

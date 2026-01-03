@@ -1,13 +1,9 @@
-import React from 'react'
-import Onboarding from '../components/Auth/onboarding'
+import Onboarding from "../components/Auth/onboarding";
+import SignIn from "../components/Auth/SignIn";
+import SignUp from "../components/Auth/SignUP";
 
-function Auth() {
-  return (
-
-   <div>
-    <Onboarding />
-   </div>
-  )
+export {
+  Onboarding,
+  SignIn,
+  SignUp
 }
-
-export default Auth
