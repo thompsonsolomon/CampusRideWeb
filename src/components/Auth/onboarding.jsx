@@ -73,7 +73,7 @@ export default function Onboarding() {
           {onboardingData.map((item) => (
             <div
               key={item.id}
-              className="w-full flex-shrink-0 flex flex-col items-center justify-center px-6"
+              className="w-full flex-shrink-0 flex flex-col items-center justify-center px-4"
             >
               {/* Image */}
               <img
@@ -84,7 +84,7 @@ export default function Onboarding() {
               />
 
               {/* Text */}
-              <h2 className="text-[40px]  text-black font-bold text-center mb-[18px]">
+              <h2 className="text-[20px]  text-black font-bold text-center mb-[18px]">
                 {item.title} <span className="text-yellow-500 ">{item.add}</span>
               </h2>
               <p className="text-gray-500 text-[14px] text-center">
