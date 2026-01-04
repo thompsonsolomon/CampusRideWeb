@@ -12,7 +12,7 @@ const navigate = useNavigate();
   console.log({ email, password });
   // auth logic here
   navigate("/");
-  localStorage.setItem("currentUser", JSON.stringify({ name: "John Doe", email }));
+  localStorage.setItem("currentUser", JSON.stringify({ name: "John", email }));
  };
 
  return (
