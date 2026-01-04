@@ -50,7 +50,7 @@ export default function Onboarding() {
   return (
     <div className="h-screen w-full bg-white flex flex-col overflow-hidden">
       {/* Skip */}
-      <div className="flex justify-end p-6">
+      <div className="flex justify-end p-6 bg-black">
         <button
           onClick={handleSkip}
           className="text-gray-500 text-sm"
@@ -84,10 +84,10 @@ export default function Onboarding() {
               />
 
               {/* Text */}
-              <h2 className="text-[40px]  text-black font-bold text-center mb-[20px]">
+              <h2 className="text-[40px]  text-black font-bold text-center mb-[18px]">
                 {item.title} <span className="text-yellow-500 ">{item.add}</span>
               </h2>
-              <p className="text-gray-500 text-[20px] text-center">
+              <p className="text-gray-500 text-[14px] text-center">
                 {item.description}
               </p>
             </div>
