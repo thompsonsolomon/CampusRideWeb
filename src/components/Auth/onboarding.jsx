@@ -48,9 +48,9 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-screen w-full bg-white flex flex-col overflow-hidden">
+    <div className="h-screen max-h-screen w-full bg-white flex flex-col overflow-hidden">
       {/* Skip */}
-      <div className="flex justify-end p-6 bg-black">
+      <div className="flex justify-end p-6 ">
         <button
           onClick={handleSkip}
           className="text-gray-500 text-sm"
@@ -95,9 +95,7 @@ export default function Onboarding() {
         </div>
       </div>
 
-      {
-        /* Dots Indicator */
-      }
+      {/* Pagination Dots */}
       <div className="flex justify-center items-center gap-3 mb-4">
         {onboardingData.map((_, index) => {
           const isActive = index === current;
