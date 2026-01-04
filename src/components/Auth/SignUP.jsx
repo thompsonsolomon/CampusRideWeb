@@ -51,7 +51,7 @@ export default function SignUp() {
 
      <button
       type="submit"
-      className="bg-yellow-500 text-white py-4 rounded-xl text-lg font-semibold mt-4"
+      className="bg-yellow-500 text-white py-4 rounded-full text-lg font-semibold mt-4"
      >
       Sign Up
      </button>

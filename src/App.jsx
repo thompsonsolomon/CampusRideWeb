@@ -19,9 +19,27 @@ function App() {
               </> :
               <Onboarding />
           } />
+
+
+          <Route path="/history" element={
+            <div>History Page</div>
+          } />
+
+
+          <Route path="/chat" element={
+            <div>Chat Page</div>
+          } />
+
+
+          <Route path="/profile" element={
+            <div>Profile Page</div>
+          } />
+
+
           <Route path="/auth/login" element={
             <SignIn />
           } />
+
           <Route path="/auth/signin" element={
             <SignUp />
 
