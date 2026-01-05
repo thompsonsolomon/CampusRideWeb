@@ -4,6 +4,7 @@ import LoadingSpinner from "./components/common/LoadingSpinner"
 import { Onboarding, SignIn, SignUp } from "./Pages/Auth"
 import Home from "./Pages/Home";
 import History from "./Pages/History";
+import Chat from "./Pages/Chat";
 
 function App() {
   // const currentUser = {    name: "John Doe",    email: "test@g,mail.com"};
@@ -28,7 +29,7 @@ function App() {
 
 
           <Route path="/chat" element={
-            <div>Chat Page</div>
+            <Chat />
           } />
 
 

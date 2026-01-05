@@ -1,5 +1,4 @@
 import React from 'react'
-// import Out from  "../../../assets/icons/Out.png";
 import Out from "../../../assets/icons/out.png"
 function Top() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
