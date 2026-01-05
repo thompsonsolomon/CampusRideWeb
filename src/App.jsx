@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import LoadingSpinner from "./components/common/LoadingSpinner"
 import { Onboarding, SignIn, SignUp } from "./Pages/Auth"
 import Home from "./Pages/Home";
+import History from "./Pages/History";
 
 function App() {
   // const currentUser = {    name: "John Doe",    email: "test@g,mail.com"};
@@ -22,7 +23,7 @@ function App() {
 
 
           <Route path="/history" element={
-            <div>History Page</div>
+            <History />
           } />
 
 
