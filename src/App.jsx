@@ -5,6 +5,7 @@ import { Onboarding, SignIn, SignUp } from "./Pages/Auth"
 import Home from "./Pages/Home";
 import History from "./Pages/History";
 import Chat from "./Pages/Chat";
+import Profile from "./Pages/Profile";
 
 function App() {
   // const currentUser = {    name: "John Doe",    email: "test@g,mail.com"};
@@ -34,7 +35,7 @@ function App() {
 
 
           <Route path="/profile" element={
-            <div>Profile Page</div>
+            <Profile />
           } />
 
 

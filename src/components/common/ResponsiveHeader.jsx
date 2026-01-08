@@ -29,14 +29,14 @@ function ResponsiveHeader() {
 
                     <Link
                         to="/chat"
-                        className={`flex flex-col items-center text-${path == "/map" ? "yellow" : "gray"}-400 hover:text-yellow-500 transition`}
+                        className={`flex flex-col items-center bg-yellow-${path == "/chat" ? "500" : "100"}  justify-center  w-9 h-9 rounded-full transition`}
                     >
                         <img src={ChatIcon} alt="homeIcon" className="w-5 h-5" />
                     </Link>
 
                     <Link
                         to="/profile"
-                        className={`flex flex-col items-center text-${path == "/profile" ? "yellow" : "gray"}-400 hover:text-yellow-500 transition`}
+                        className={`flex flex-col items-center bg-yellow-${path == "/profile" ? "500" : "100"}  justify-center  w-9 h-9 rounded-full transition`}
                     >
                         <img src={ProfileIcon} alt="homeIcon" className="w-5 h-5" />
                     </Link>
