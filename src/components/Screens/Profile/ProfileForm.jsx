@@ -4,7 +4,8 @@ import { updateUserProfile } from "../../../utils/firebaseUtils";
 
 export default function Profile() {
   const { user, firebaseUser } = useAuth();
-
+  console.log(user);
+  
   const [firstName, setFirstName] = useState(user?.firstName || "");
   const [lastName, setLastName] = useState(user?.lastName || "");
   const [phone, setPhone] = useState(user?.phone || "");

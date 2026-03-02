@@ -134,7 +134,6 @@ export const updateUserProfile = async ({
   firstName,
   lastName,
   phone,
-  photoURL,
   firebaseUser,
 }) => {
   try {
@@ -151,7 +150,6 @@ export const updateUserProfile = async ({
     await updateDoc(userRef, {
       userName: displayName,
       phone,
-      photoURL,
       updatedAt: serverTimestamp(),
     });
 
