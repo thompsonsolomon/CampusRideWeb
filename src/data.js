@@ -114,3 +114,8 @@ export const DummyHistory = [
     from: "Hostel Block C",
   },
 ];
+
+export function truncateText(text, maxLength) {
+  if (text.length <= maxLength) return text
+  return text.slice(0, maxLength) + "..."
+}

@@ -1,104 +1,98 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../../../contexts/AuthContext";
+import { updateUserProfile } from "../../../utils/firebaseUtils";
 
-function ProfileForm() {
-  const initialFormData = [
-    {
-      name: "firstName",
-      label: "First Name",
-      placeholder: "First Name",
-      value: "Thompson",
-      type: "text",
-    },
-    {
-      name: "lastName",
-      label: "Last Name",
-      placeholder: "Last Name",
-      value: "Solomon",
-      type: "text",
-    },
-    {
-      name: "email",
-      label: "Email",
-      placeholder: "example@gmail.com",
-      value: "example@gmail.com",
-      type: "email",
-    },
-    {
-      name: "phone",
-      label: "Phone Number",
-      placeholder: "Phone Number",
-      value: "+234 814 134 2103",
-      type: "text",
-    },
-    {
-      name: "role",
-      label: "Role",
-      value: "User",
-      type: "text",
-      readOnly: true,
-    },
-  ];
+export default function Profile() {
+  const { user, firebaseUser } = useAuth();
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [firstName, setFirstName] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  // const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
 
-  const handleChange = (index, newValue) => {
-    const updatedData = [...formData];
-    updatedData[index] = {
-      ...updatedData[index],
-      value: newValue,
-    };
-    setFormData(updatedData);
-  };
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess("");
 
-    // Convert array to object (clean for backend)
-    const payload = {};
-    formData.forEach((field) => {
-      payload[field.name] = field.value;
+    const result = await updateUserProfile({
+      uid: user.uid,
+      firstName,
+      lastName,
+      phone,
+      firebaseUser,
     });
 
-    console.log("Updated Profile:", payload);
+    setLoading(false);
+
+    if (result.success) {
+      setSuccess("Profile updated successfully!");
+    }
   };
 
+  if (!user) return null;
+
   return (
-    <div className="bg-white w-full flex justify-start items-start p-6 rounded-md">
-      <form onSubmit={handleSubmit} className="w-full">
-        {formData.map((data, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col items-start w-full gap-2 mt-6"
-          >
-            <label className="text-gray-400 text-[18px]">
-              {data.label}
-            </label>
+    <div className="flex justify-center py-10 px-4">
+      <div className=" shadow-xl rounded-2xl w-full max-w-2xl p-8">
+
+        {/* Profile Header
+        <div className="flex flex-col items-center mb-8">
+          <img
+            src={photoURL || "https://via.placeholder.com/120"}
+            alt="Profile"
+            className="w-28 h-28 rounded-full object-cover border-4 border-yellow-400 shadow-md"
+          />
+
+          <p className="text-gray-500 mt-2 text-sm">
+            Upload image on Cloudinary and paste the URL below
+          </p>
+        </div> */}
+
+        {/* Form */}
+        <form onSubmit={handleUpdate} className="space-y-5">
+
+          <div className="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+              className="border rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 outline-none"
+            />
 
             <input
-              type={data.type}
-              placeholder={data.placeholder}
-              value={data.value}
-              readOnly={data.readOnly}
-              onChange={(e) => handleChange(idx, e.target.value)}
-              className={`w-full pl-6 pt-3 pb-3 text-[18px] outline-none rounded-full
-                ${
-                  data.readOnly
-                    ? "bg-gray-200 cursor-not-allowed"
-                    : "bg-gray-300"
-                }`}
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+              className="border rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 outline-none"
             />
           </div>
-        ))}
 
-        <button
-          type="submit"
-          className="mt-8 w-full bg-yellow-500 text-white py-4 rounded-full text-lg font-semibold"
-        >
-          Save Changes
-        </button>
-      </form>
+          <input
+            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Phone Number"
+            className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400 outline-none"
+          />
+          {success && (
+            <p className="text-green-600 text-sm text-center">{success}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-xl font-semibold transition-all disabled:opacity-50"
+          >
+            {loading ? "Updating..." : "Update Profile"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
-
-export default ProfileForm;

@@ -5,6 +5,7 @@ import App from "./App.jsx"
 import "./index.css"
 import { toast, ToastContainer } from 'react-toastify'
 import { registerSW } from "virtual:pwa-register";
+import { AuthProvider } from "./contexts/AuthContext.jsx"
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -54,9 +55,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ErrorBoundary>
       <BrowserRouter>
-        <div className="overflow-x-hidden">
-          <App />
-        </div>
+        <AuthProvider>
+
+          <div className="overflow-x-hidden">
+            <App />
+          </div>
+        </AuthProvider>
         <ToastContainer position="top-right" autoClose={3000} />
       </BrowserRouter>
     </ErrorBoundary>

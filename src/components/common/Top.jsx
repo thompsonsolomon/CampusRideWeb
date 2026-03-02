@@ -1,9 +1,8 @@
-import React from 'react'
 import Out from "../../assets/icons/out.png"
+import { logout } from '../../utils/authUtils'
 function Top({ text }) {
  const HandleLogOut = () => {
-  localStorage.removeItem("currentUser");
-  window.location.reload();
+  logout()
  }
  return (
   <div>

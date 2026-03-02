@@ -38,13 +38,13 @@ export default function Onboarding() {
       setCurrent((prev) => prev + 1);
     } else {
       console.log("Go to login");
-      navigate("auth/login");
+      navigate("/auth/login");
     }
   };
 
   const handleSkip = () => {
     console.log("Skip onboarding");
-    navigate("auth/login");
+    navigate("/auth/login");
   };
 
   return (

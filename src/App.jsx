@@ -6,39 +6,51 @@ import Home from "./Pages/Home";
 import History from "./Pages/History";
 import Chat from "./Pages/Chat";
 import Profile from "./Pages/Profile";
+import { useAuth } from "./contexts/AuthContext";
+import ProtectedRoute from "./Helpers/ProtectedRoute";
 
 function App() {
   // const currentUser = {    name: "John Doe",    email: "test@g,mail.com"};
   // const currentUser = null; // For testing onboarding flow
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { user } = useAuth()
+  const currentUser = null
   return (
     <div className="min-h-screen bg-black text-white">
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={
-            currentUser ?
-              <>
-                <Home />
-              </> :
-              <Onboarding />
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
           } />
 
 
           <Route path="/history" element={
-            <History />
+            <ProtectedRoute>
+              <History />
+            </ProtectedRoute>
           } />
 
 
           <Route path="/chat" element={
-            <Chat />
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
           } />
 
 
           <Route path="/profile" element={
-            <Profile />
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
           } />
 
 
+
+          <Route path="/onboarding" element={
+
+            <Onboarding />
+          } />
           <Route path="/auth/login" element={
             <SignIn />
           } />
